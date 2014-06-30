@@ -10,7 +10,7 @@ package fuzzySystem;
  *
  * @author iulisloi
  */
-public class ParFuzzy {
+public class ParFuzzy implements Comparable<ParFuzzy>{
     
     private int valor;
     private double valorPertinencia;
@@ -35,4 +35,17 @@ public class ParFuzzy {
         System.out.print(this.valorPertinencia);
         System.out.print(")");
     }
+
+    @Override
+    public int compareTo(ParFuzzy other) {
+        return Integer.compare(this.valor, other.valor);
+    }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(this.valor) + "/" + 
+                String.valueOf(this.valorPertinencia);
+    }
+    
+    
 }

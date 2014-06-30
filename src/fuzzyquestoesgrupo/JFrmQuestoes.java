@@ -6,9 +6,9 @@
 package fuzzyquestoesgrupo;
 
 import fuzzySystem.BaseDadosEntrada;
+import fuzzySystem.BaseRegras;
 import fuzzySystem.Fuzzyficador;
 import fuzzySystem.ListaParesFuzzy;
-import fuzzySystem.ParFuzzy;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Random;
@@ -360,6 +360,7 @@ public class JFrmQuestoes extends javax.swing.JFrame {
     private void jBtnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAvaliarActionPerformed
         ArrayList<Integer> valoresQuestoes = new ArrayList<>();
         BaseDadosEntrada bde = new BaseDadosEntrada();
+        BaseRegras br = new BaseRegras();
         ListaParesFuzzy listaParesFuzzy = new ListaParesFuzzy();
         valoresQuestoes.add(this.jSlider1.getValue());
         valoresQuestoes.add(this.jSlider2.getValue());
@@ -372,12 +373,14 @@ public class JFrmQuestoes extends javax.swing.JFrame {
 //        valoresQuestoes.add(this.jSlider9.getValue());
 //        valoresQuestoes.add(this.jSlider10.getValue());
         listaParesFuzzy = Fuzzyficador.fuzzyficar(valoresQuestoes);
-        listaParesFuzzy.print();
-        for(ParFuzzy p : listaParesFuzzy.asList()){
-            System.out.print(p.getValor() + "/" + p.getValorPertinencia() + " -> ");
-            ArrayList<String> possInf = bde.getPossibilidadesInferencia(p);
-            System.out.println(possInf.toString());
-        }
+        br.geraPossibilidadesInferencia(listaParesFuzzy);
+        
+//        listaParesFuzzy.print();
+//        for(ParFuzzy p : listaParesFuzzy.asList()){
+//            System.out.print(p.getValor() + "/" + p.getValorPertinencia() + " -> ");
+//            ArrayList<String> possInf = bde.getPossibilidadesInferencia(p);
+//            System.out.println(possInf.toString());
+//        }
     }//GEN-LAST:event_jBtnAvaliarActionPerformed
 
     private void clearAnswers() {
