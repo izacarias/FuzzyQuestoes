@@ -5,7 +5,10 @@
  */
 package fuzzyquestoesgrupo;
 
-import fuzzySystem.BaseRegras;
+import fuzzySystem.BaseDadosEntrada;
+import fuzzySystem.Fuzzyficador;
+import fuzzySystem.ListaParesFuzzy;
+import fuzzySystem.ParFuzzy;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Random;
@@ -355,8 +358,26 @@ public class JFrmQuestoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnAleatorioActionPerformed
 
     private void jBtnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAvaliarActionPerformed
-        BaseRegras br = new BaseRegras();
-        System.out.println(br.findResultado("SP", "NS", "SP", "NS", "S", "NS", "NS", "SP", "NS", "S"));
+        ArrayList<Integer> valoresQuestoes = new ArrayList<>();
+        BaseDadosEntrada bde = new BaseDadosEntrada();
+        ListaParesFuzzy listaParesFuzzy = new ListaParesFuzzy();
+        valoresQuestoes.add(this.jSlider1.getValue());
+        valoresQuestoes.add(this.jSlider2.getValue());
+        valoresQuestoes.add(this.jSlider3.getValue());
+//        valoresQuestoes.add(this.jSlider4.getValue());
+//        valoresQuestoes.add(this.jSlider5.getValue());
+//        valoresQuestoes.add(this.jSlider6.getValue());
+//        valoresQuestoes.add(this.jSlider7.getValue());
+//        valoresQuestoes.add(this.jSlider8.getValue());
+//        valoresQuestoes.add(this.jSlider9.getValue());
+//        valoresQuestoes.add(this.jSlider10.getValue());
+        listaParesFuzzy = Fuzzyficador.fuzzyficar(valoresQuestoes);
+        listaParesFuzzy.print();
+        for(ParFuzzy p : listaParesFuzzy.asList()){
+            System.out.print(p.getValor() + "/" + p.getValorPertinencia() + " -> ");
+            ArrayList<String> possInf = bde.getPossibilidadesInferencia(p);
+            System.out.println(possInf.toString());
+        }
     }//GEN-LAST:event_jBtnAvaliarActionPerformed
 
     private void clearAnswers() {

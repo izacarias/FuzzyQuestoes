@@ -12,14 +12,14 @@ public class BaseRegras {
     private final ArrayList<Regra> baseRegras;
     private final TreeMap<String, Integer> valoresLinguisticos;
 
-    public BaseRegras() {
+    public BaseRegras() { 
         // declara os Collections utilizados
         this.baseRegras = new ArrayList<>();
         this.valoresLinguisticos = new TreeMap<>();
         // Cria array com variáveis linguísticas
-        this.valoresLinguisticos.put("NS", 2);
-        this.valoresLinguisticos.put("SP", 6);
-        this.valoresLinguisticos.put("S", 9);
+        this.valoresLinguisticos.put(VariavelLinguistica.NS, 2);
+        this.valoresLinguisticos.put(VariavelLinguistica.SP, 6);
+        this.valoresLinguisticos.put(VariavelLinguistica.S, 9);
         // monta a base de conhecimento
         double mediaResult;
         String resultado;
@@ -73,7 +73,8 @@ public class BaseRegras {
             } else {
                 resultado = "S";
             }
-            Regra regra = new Regra(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, resultado);
+            Regra regra = new Regra(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, 
+                    resultado);
             this.baseRegras.add(regra);
         }
 
@@ -84,9 +85,9 @@ public class BaseRegras {
             }
         }
     }
-    
-    public String findResultado(String q0, String q1, String q2, String q3, String q4,
-            String q5, String q6, String q7, String q8, String q9){
+
+    public String findResultado(String q0, String q1, String q2, String q3,
+            String q4, String q5, String q6, String q7, String q8, String q9) {
         String resultado = "";
         for (Regra r : this.baseRegras) {
             if (r.compare(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9)) {
