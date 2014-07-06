@@ -3,6 +3,7 @@ package fuzzySystem;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.TreeMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -87,7 +88,7 @@ public class BaseRegras {
         }
     }
 
-    public String findResultado(String q0, String q1, String q2, String q3,
+    public String queryResultado(String q0, String q1, String q2, String q3,
             String q4, String q5, String q6, String q7, String q8, String q9) {
         String resultado = "";
         for (Regra r : this.baseRegras) {
