@@ -28,6 +28,10 @@ public class ListaParesFuzzy {
         this.listaPares.add(par);
     }
     
+    public int size(){
+        return this.listaPares.size();
+    }
+    
     public void print(){
         System.out.print("{");
         for (ParFuzzy pf : listaPares){

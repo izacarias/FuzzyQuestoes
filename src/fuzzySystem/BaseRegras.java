@@ -1,6 +1,7 @@
 package fuzzySystem;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.TreeMap;
 
 /**
@@ -12,7 +13,7 @@ public class BaseRegras {
     private final ArrayList<Regra> baseRegras;
     private final TreeMap<String, Integer> valoresLinguisticos;
 
-    public BaseRegras() { 
+    public BaseRegras() {
         // declara os Collections utilizados
         this.baseRegras = new ArrayList<>();
         this.valoresLinguisticos = new TreeMap<>();
@@ -73,7 +74,7 @@ public class BaseRegras {
             } else {
                 resultado = "S";
             }
-            Regra regra = new Regra(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, 
+            Regra regra = new Regra(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9,
                     resultado);
             this.baseRegras.add(regra);
         }
@@ -95,5 +96,49 @@ public class BaseRegras {
             }
         }
         return resultado;
+    }
+
+    public void geraCombinacoesPossiveis(ListaParesFuzzy listaParesFuzzy) {
+        BaseDadosEntrada bde = new BaseDadosEntrada();
+        LinkedHashMap<ParFuzzy, ArrayList<String>> conjQuestoes = new LinkedHashMap<>();
+        int qtdQuestoes = listaParesFuzzy.size();
+        int numComb = 1;
+        int linhasValidas = 0;
+        for (ParFuzzy p : listaParesFuzzy.asList()) {
+            ArrayList<String> possInf = bde.getPossibilidadesInferencia(p);
+            conjQuestoes.put(p, possInf);
+            numComb = numComb * possInf.size();
+        }
+        String[][] possGeradas = new String[numComb][qtdQuestoes];
+        for (int indexLinha = 0; indexLinha < (int) Math.pow(2, qtdQuestoes); indexLinha++) {
+            int indexQuestao = 0;
+            int fatorExpoente;
+            String[] opcoesLinha = new String[qtdQuestoes];
+            boolean outOfOptions = false;
+            for (ParFuzzy p : listaParesFuzzy.asList()) {
+                int indexOpcao;
+                // String opAtual = "";
+                fatorExpoente = (int) Math.pow(2, indexQuestao);
+                indexOpcao = ((int) indexLinha / fatorExpoente) % 2;
+                if (indexOpcao > conjQuestoes.get(p).size() - 1) {
+                    outOfOptions = true;
+                    break;
+                }
+                opcoesLinha[indexQuestao]
+                        = conjQuestoes.get(p).get(indexOpcao);
+                indexQuestao++;
+            }
+            if (!outOfOptions) {
+                possGeradas[linhasValidas] = opcoesLinha;
+                linhasValidas++;
+            }
+        }
+        for (int i = 0; i < linhasValidas; i++) {
+            for (int j = 0; j < qtdQuestoes; j++) {
+                System.out.print(possGeradas[i][j]);
+                System.out.print(",");
+            }
+            System.out.println();
+        }
     }
 }
