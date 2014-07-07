@@ -65,5 +65,5 @@ public class BaseDadosEntrada {
         int valor = par.getValor();
         return this.getPossibilidadesInferencia(valor);
     }
-
+    
 }
