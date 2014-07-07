@@ -1,7 +1,6 @@
 package fuzzySystem;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.TreeMap;
 import java.util.LinkedHashMap;
 
@@ -75,8 +74,18 @@ public class BaseRegras {
             } else {
                 resultado = "S";
             }
-            Regra regra = new Regra(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9,
-                    resultado);
+            ArrayList<String> opcoes = new ArrayList<>();
+            opcoes.add(q0);
+            opcoes.add(q1);
+            opcoes.add(q2);
+            opcoes.add(q3);
+            opcoes.add(q4);
+            opcoes.add(q5);
+            opcoes.add(q6);
+            opcoes.add(q7);
+            opcoes.add(q8);
+            opcoes.add(q9);
+            Regra regra = new Regra(opcoes, resultado);
             this.baseRegras.add(regra);
         }
 
@@ -88,11 +97,10 @@ public class BaseRegras {
         }
     }
 
-    public String queryResultado(String q0, String q1, String q2, String q3,
-            String q4, String q5, String q6, String q7, String q8, String q9) {
+    public String queryResultado(ArrayList<String> questoes) {
         String resultado = "";
         for (Regra r : this.baseRegras) {
-            if (r.compare(q0, q1, q2, q3, q4, q5, q6, q7, q8, q9)) {
+            if (r.compare(questoes)) {
                 resultado = r.getResultado();
             }
         }
@@ -133,13 +141,6 @@ public class BaseRegras {
                 possGeradas[linhasValidas] = opcoesLinha;
                 linhasValidas++;
             }
-        }
-        for (int i = 0; i < linhasValidas; i++) {
-            for (int j = 0; j < qtdQuestoes; j++) {
-                System.out.print(possGeradas[i][j]);
-                System.out.print(",");
-            }
-            System.out.println();
         }
     }
 }
