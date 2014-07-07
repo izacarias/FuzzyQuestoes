@@ -5,6 +5,7 @@
  */
 package fuzzySystem;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
@@ -48,4 +49,36 @@ public class BaseDadosSaida {
         valoresS.put(100, 1.0);
     }
 
+    public double getValorElemento(String varLinguistica, ParFuzzy questao) {
+        double resultado = -1.0;
+        double grauPertinencia = questao.getValorPertinencia();
+        switch (varLinguistica) {
+            case "NS":
+                resultado = valoresNS.get(questao);
+                break;
+            case "SP":
+                resultado = valoresSP.get(questao);
+                break;
+            case "S":
+                resultado = valoresS.get(questao);
+                break;
+        }
+        return resultado;
+    }
+
+    public ArrayList<Double> getLinha(String varLinguistica) {
+        ArrayList<Double> resultado = new ArrayList<>();
+        switch (varLinguistica) {
+            case "NS":
+                resultado.addAll(this.valoresNS.values());
+                break;
+            case "SP":
+                resultado.addAll(this.valoresSP.values());
+                break;
+            case "S":
+                resultado.addAll(this.valoresS.values());
+                break;
+        }
+        return resultado;
+    }
 }

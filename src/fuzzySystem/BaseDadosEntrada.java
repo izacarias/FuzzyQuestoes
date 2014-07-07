@@ -65,5 +65,21 @@ public class BaseDadosEntrada {
         int valor = par.getValor();
         return this.getPossibilidadesInferencia(valor);
     }
-    
+
+    public double getValorElemento(String varLinguistica, ParFuzzy questao) {
+        double resultado = -1.0;
+        int grauPertinencia = questao.getValor();
+        switch (varLinguistica) {
+            case "NS":
+                resultado = valoresNS.get(grauPertinencia);
+                break;
+            case "SP":
+                resultado = valoresSP.get(grauPertinencia);
+                break;
+            case "S":
+                resultado = valoresS.get(grauPertinencia);
+                break;
+        }
+        return resultado;
+    }
 }
