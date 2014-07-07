@@ -12,7 +12,6 @@ public class Regra {
     String resultado;
 
     public Regra(ArrayList<String> questoes, String resultado) {
-
         this.questoes = questoes;
         this.resultado = resultado;
     }

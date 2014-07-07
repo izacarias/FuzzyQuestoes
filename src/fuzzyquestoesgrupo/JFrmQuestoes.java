@@ -9,6 +9,7 @@ import fuzzySystem.BaseDadosEntrada;
 import fuzzySystem.BaseRegras;
 import fuzzySystem.Fuzzyficador;
 import fuzzySystem.ListaParesFuzzy;
+import fuzzySystem.MaquinaInferencia;
 import fuzzySystem.ParFuzzy;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -367,26 +368,20 @@ public class JFrmQuestoes extends javax.swing.JFrame {
     private void jBtnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAvaliarActionPerformed
         ArrayList<Integer> valoresQuestoes = new ArrayList<>();
         BaseDadosEntrada bde = new BaseDadosEntrada();
-        BaseRegras baseRegras = new BaseRegras();
+        MaquinaInferencia inferencia = new MaquinaInferencia();
         ListaParesFuzzy listaParesFuzzy;
         valoresQuestoes.add(this.jSlider1.getValue());
         valoresQuestoes.add(this.jSlider2.getValue());
-        valoresQuestoes.add(this.jSlider3.getValue());
-        valoresQuestoes.add(this.jSlider4.getValue());
-        valoresQuestoes.add(this.jSlider5.getValue());
-        valoresQuestoes.add(this.jSlider6.getValue());
-        valoresQuestoes.add(this.jSlider7.getValue());
-        valoresQuestoes.add(this.jSlider8.getValue());
-        valoresQuestoes.add(this.jSlider9.getValue());
-        valoresQuestoes.add(this.jSlider10.getValue());
+//        valoresQuestoes.add(this.jSlider3.getValue());
+//        valoresQuestoes.add(this.jSlider4.getValue());
+//        valoresQuestoes.add(this.jSlider5.getValue());
+//        valoresQuestoes.add(this.jSlider6.getValue());
+//        valoresQuestoes.add(this.jSlider7.getValue());
+//        valoresQuestoes.add(this.jSlider8.getValue());
+//        valoresQuestoes.add(this.jSlider9.getValue());
+//        valoresQuestoes.add(this.jSlider10.getValue());
         listaParesFuzzy = Fuzzyficador.fuzzyficar(valoresQuestoes);
-        listaParesFuzzy.print();
-        for(ParFuzzy p : listaParesFuzzy.asList()){
-            System.out.print(p.getValor() + "/" + p.getValorPertinencia() + " -> ");
-            ArrayList<String> possInf = bde.getPossibilidadesInferencia(p);
-            System.out.println(possInf.toString());
-        }
-        baseRegras.geraCombinacoesPossiveis(listaParesFuzzy);
+        inferencia.geraInferencia(listaParesFuzzy);
     }//GEN-LAST:event_jBtnAvaliarActionPerformed
 
     private void clearAnswers() {
