@@ -12,7 +12,8 @@ public class FuzzyQuestoesGrupo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new JFrmQuestoes().setVisible(true);
+        //new JFrmQuestoes().setVisible(true);
+        new JFrmQuestoes2().setVisible(true);
     }
     
 }
