@@ -34,7 +34,7 @@ public class MaquinaInferencia {
         this.pertinenciaQuestao = new ArrayList<>();
     }
 
-    public void geraInferencia(ListaParesFuzzy listaParesFuzzy) {
+    public double geraInferencia(ListaParesFuzzy listaParesFuzzy) {
         ArrayList<Double> saidaSelecionada;
         this.matrizPossibilidades
                 = baseRegras.geraCombinacoesPossiveis(listaParesFuzzy);
@@ -63,10 +63,7 @@ public class MaquinaInferencia {
             this.r.put(i, rTemp);
         }
         rFinal = rMaximo(r);
-
-        for (Double v : rFinal) {
-            System.out.print(v + ", ");
-        }
+        return this.defuzzificacao(rFinal);
     }
 
     private double minimo(ArrayList<Double> pertQuestoes, double valorR) {
@@ -88,5 +85,15 @@ public class MaquinaInferencia {
             }
         }
         return arrMax;
+    }
+
+    private double defuzzificacao(ArrayList<Double> r) {
+        double num = 0;
+        double denom = 0;
+        for (int i = 0; i < r.size(); i++) {
+            num += r.get(i) * (i * 20);
+            denom += r.get(i);
+        }
+        return num / denom;
     }
 }
