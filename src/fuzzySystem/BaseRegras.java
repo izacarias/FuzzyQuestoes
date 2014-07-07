@@ -96,18 +96,38 @@ public class BaseRegras {
             }
         }
     }
+    
+    public String queryResultado(ArrayList<String> questoes){
+        return this.queryResultado(questoes, false);
+    }
 
-    public String queryResultado(ArrayList<String> questoes) {
+    public String queryResultado(ArrayList<String> questoes, boolean debug) {
         String resultado = "";
-        for (Regra r : this.baseRegras) {
-            if (r.compare(questoes)) {
-                resultado = r.getResultado();
+        if (!debug) {
+            for (Regra r : this.baseRegras) {
+                if (r.compare(questoes)) {
+                    resultado = r.getResultado();
+                }
+            }
+        } else {
+            int mediaResult = 0;
+            for(String q : questoes){
+                mediaResult += valoresLinguisticos.get(q);
+            }
+            mediaResult = mediaResult / questoes.size();
+            // regras 
+            if (mediaResult <= 4) {
+                resultado = "NS";
+            } else if (mediaResult < 8) {
+                resultado = "SP";
+            } else {
+                resultado = "S";
             }
         }
         return resultado;
     }
 
-    public void geraCombinacoesPossiveis(ListaParesFuzzy listaParesFuzzy) {
+    public String[][] geraCombinacoesPossiveis(ListaParesFuzzy listaParesFuzzy) {
         BaseDadosEntrada bde = new BaseDadosEntrada();
         LinkedHashMap<ParFuzzy, ArrayList<String>> conjQuestoes = new LinkedHashMap<>();
         int qtdQuestoes = listaParesFuzzy.size();
@@ -142,5 +162,6 @@ public class BaseRegras {
                 linhasValidas++;
             }
         }
+        return possGeradas;
     }
 }
