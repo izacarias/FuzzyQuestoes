@@ -2,7 +2,7 @@ package fuzzyquestoesgrupo;
 
 /**
  *
- * @author iulisloi
+ * @author Gustavo B. Paulus, Iulisloi Zacarias, Rafael A. Vitalli
  */
 public class FuzzyQuestoesGrupo {
     

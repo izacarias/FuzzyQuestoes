@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author iulisloi
+ * @author Gustavo B. Paulus, Iulisloi Zacarias, Rafael A. Vitalli
  */
 public class Regra {
 
