@@ -7,11 +7,11 @@ package fuzzySystem;
 public class ParFuzzy implements Comparable<ParFuzzy>{
     
     private int valor;
-    private double valorPertinencia;
+    private double grauPertinencia;
 
     public ParFuzzy(int valor, double valorPertinencia) {
         this.valor = valor;
-        this.valorPertinencia = valorPertinencia;
+        this.grauPertinencia = valorPertinencia;
     }
 
     public int getValor() {
@@ -19,14 +19,14 @@ public class ParFuzzy implements Comparable<ParFuzzy>{
     }
 
     public double getValorPertinencia() {
-        return valorPertinencia;
+        return grauPertinencia;
     }
 
     void print() {
         System.out.print("(");
         System.out.print(this.valor);
         System.out.print("/");
-        System.out.print(this.valorPertinencia);
+        System.out.print(this.grauPertinencia);
         System.out.print(")");
     }
 
@@ -38,7 +38,7 @@ public class ParFuzzy implements Comparable<ParFuzzy>{
     @Override
     public String toString(){
         return String.valueOf(this.valor) + "/" + 
-                String.valueOf(this.valorPertinencia);
+                String.valueOf(this.grauPertinencia);
     }
     
     
